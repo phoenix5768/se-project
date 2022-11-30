@@ -1,4 +1,5 @@
 # se-project
+# Created by: Batyrkhan Abukhanov
 Hospital system
 There is only backend of the Project Milestone 3 (Unfortunately) <br>
 The backend part of the web-site was written in Django Framework (Python). Frontend will be written in ReactJS (but is not ready, unfortunately) <br>
