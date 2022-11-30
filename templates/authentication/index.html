@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Authentication</title>
+</head>
+<body>
+
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                alert("{{ message }}");
+            </script>
+        {% endfor %}
+    {% endif %}
+
+
+    <h3>Welcome to Hospital System</h3>
+
+
+    <h3>Hello</h3>
+    <h4>Login as an administrator</h4>
+    {% if user.is_authenticated == False %}
+        <button type="submit"><a href="/signin">SignIn</a></button>
+    {% endif %}
+    <button type="submit"><a href="{% url 'appointment' %}">Appointment</a></button>
+
+    {% if user.is_authenticated %}
+        <button type="submit"><a href="{% url 'adminpage' %}">Admin page</a></button>
+        <button tyep="submit"><a href="/signout">SignOut</a></button>
+    {% endif %}
+
+
+</body>
+</html>

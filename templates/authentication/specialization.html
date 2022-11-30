@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Specialization</title>
+</head>
+<body>
+    <h1>Our Specialists</h1>
+
+    {% for specialization in specializations %}
+        <h2>{{ specialization }}</h2>
+        {% for doctor in doctors %}
+            {% if doctor.specialization_details_id.specialization == specialization.specialization %}
+                <img src="{{ doctor.photo.url }}"/>
+                <br>
+                <li><strong>Name:</strong> {{ doctor.fname }} {{ doctor.mname }} {{ doctor.lname }}</li>
+                <li><strong>Date of birth:</strong> {{ doctor.date_of_birth }}</li>
+                <li><strong>Contact number:</strong> {{ doctor.contact_number }}</li>
+                <li><strong>Department:</strong> {{ doctor.department_id }}</li>
+                <li><strong>Specialization:</strong> {{ doctor.specialization_details_id }}</li>
+                <li><strong>Experience:</strong> {{ doctor.experience }}</li>
+                <li><strong>Category:</strong> {{ doctor.category }}</li>
+                <li><strong>Price:</strong> {{ doctor.price }}</li>
+                <li><strong>Education:</strong> {{ doctor.education }}</li>
+                <li><strong>Rating:</strong> {{ doctor.rating }}</li>
+                <li><strong>Location:</strong> {{ doctor.address }}</li>
+                <li><strong>Not available TimeSlots:</strong>
+                    {% for appointment in appointments %}
+                        <ul>
+                            {% if appointment.doctor == doctor %}
+                            <strong>date: </strong>{{ appointment.date }}, <strong>time: </strong>{{ appointment.time }}
+                            {% endif %}
+                        </ul>
+                    {% endfor %}
+                </li>
+            {% endif %}
+
+            <br>
+        {% endfor %}
+    {% endfor %}
+
+
+</body>
+</html>

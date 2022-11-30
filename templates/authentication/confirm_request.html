@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Request</title>
+</head>
+<body>
+    <h1>Confirm Request</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                alert("{{ message }}");
+            </script>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label><strong>Doctor:</strong> {{ doctors.fname }} {{ doctors.lname }} </label>
+        <br>
+        <label><strong>Date:</strong> {{ appointments.date }} </label>
+        <br>
+        <label><strong>Timeslot:</strong> {{ appointments.time }} </label>
+        <br>
+        <label><strong>Patient_name:</strong> {{ appointments.patient_name }} </label>
+        <br>
+        <label><strong>Email:</strong> {{ appointments.email }} </label>
+        <br>
+        <label><strong>Phone:</strong> {{ appointments.phone }} </label>
+        <br><br>
+        <button type="submit" class="btn btn-outline-secondary btn-sm">Confirm Request</button>
+    </form>
+
+    <br>
+    <button><a href="{% url 'appointment' %}">Back</a></button>
+</body>
+</html>

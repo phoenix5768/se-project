@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Appointment</title>
+</head>
+<body>
+    <h1>Make Appointment</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                alert("{{ message }}");
+            </script>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" action="">
+        {% csrf_token %}
+
+        <select name="doctor" required>
+            <option value="">----</option>
+            {% for doctor in doctors %}
+                <option value="{{ doctor.id_number }}">{{ doctor }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="text" name="date" required placeholder="YYYY-MM-DD">
+        <br>
+
+        <select name="timeslot" required>
+            <option value="">----</option>
+            <option value="0">09:00 – 09:30</option>
+            <option value="1">10:00 – 10:30</option>
+            <option value="2">11:00 – 11:30</option>
+            <option value="3">12:00 – 12:30</option>
+            <option value="4">13:00 – 13:30</option>
+            <option value="5">14:00 – 14:30</option>
+            <option value="6">15:00 – 15:30</option>
+            <option value="7">16:00 – 16:30</option>
+            <option value="8">17:00 – 17:30</option>
+        </select>
+        <br>
+        <input type="text" name="name" placeholder="name">
+        <br>
+        <input type="text" name="phone" placeholder="phone number">
+        <br>
+        <input type="email" name="email" placeholder="email address">
+
+        <br> <br>
+        <button type="submit" class="btn btn-outline-secondary btn-sm">Make Appointment</button>
+    </form>
+
+    <br>
+    <button><a href="{% url 'appointment' %}">Back</a></button>
+</body>
+</html>
